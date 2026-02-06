@@ -1,7 +1,7 @@
 # AddFish default English language file
 # Delete then /reload to export from DLL again; copy to other files (e.g., en-us.yml) to add new languages.
 
-addfish.help.banner: "          [i:3455][c/AD89D5:Au][c/D68ACA:to][c/DF909A:Fi][c/E5A894:sh][i:3454]"
+addfish.help.banner: "          [i:3455][c/AD89D5:Ad][c/D68ACA:d][c/DF909A:Fi][c/E5A894:sh][i:3454]"
 addfish.help.consoleUseAfa: "Please use /adfa for admin commands."
 addfish.help.admin.title: "[AddFish - Admin Commands]"
 addfish.help.player.rules: "/adf rules [page] -- View [c/F9D77E:custom fishing rules]"

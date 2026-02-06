@@ -1,7 +1,7 @@
 # AddFish 默认中文语言文件
 # 删除后 /reload 将从 DLL 重新导出；复制为其它文件（如 en-us.yml）即可添加新语言。
 
-addfish.help.banner: "          [i:3455][c/AD89D5:自][c/D68ACA:动][c/DF909A:钓][c/E5A894:鱼][i:3454]"
+addfish.help.banner: "          [i:3455][c/AD89D5:额][c/D68ACA:外][c/DF909A:渔][c/E5A894:获][i:3454]"
 addfish.help.consoleUseAfa: "请使用 /adfa 进行管理员命令。"
 addfish.help.admin.title: "[AddFish - 管理员命令]"
 addfish.help.player.rules: "/adf rules [页码] -- 查看[c/F9D77E:自定义钓鱼规则]"

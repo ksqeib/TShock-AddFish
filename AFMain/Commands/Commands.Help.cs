@@ -1,7 +1,7 @@
 using System.Text;
 using TShockAPI;
 
-namespace AutoFish.AFMain;
+namespace AddFish.AFMain;
 
 /// <summary>
 ///     指令帮助展示逻辑。
@@ -12,7 +12,7 @@ public partial class Commands
     {
         var isConsole = !player.RealPlayer;
         var helpMessage = new StringBuilder();
-        helpMessage.Append(Lang.T("help.banner"));
+        helpMessage.Append(Lang.T("addfish.help.banner"));
 
         if (!isConsole)
             AppendPlayerHelp(player, helpMessage);
@@ -21,12 +21,12 @@ public partial class Commands
     }
 
     /// <summary>
-    ///     仅输出管理员帮助，用于 /afa 和控制台提示。
+    ///     仅输出管理员帮助，用于 /adfa 和控制台提示。
     /// </summary>
     private static void SendAdminHelpOnly(TSPlayer player)
     {
         var sb = new StringBuilder();
-        sb.Append(Lang.T("help.admin.title"));
+        sb.Append(Lang.T("addfish.help.admin.title"));
         AppendAdminHelp(player, sb);
         player.SendMessage(sb.ToString(), 193, 223, 186);
     }

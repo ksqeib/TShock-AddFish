@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria.GameContent.FishDropRules;
 
-namespace AutoFish.AFMain.Enums;
+namespace AddFish.AFMain.Enums;
 
 /// <summary>
 ///     钓鱼条件枚举与游戏内 AFishingCondition 对象之间的映射器。
@@ -263,7 +263,7 @@ public static class FishingConditionMapper
     /// </summary>
     public static string GetLocalizedName(FishingConditionType conditionType)
     {
-        var key = $"condition.{conditionType}";
+        var key = $"addfish.condition.{conditionType}";
         return Lang.T(key);
     }
 }

@@ -1,5 +1,5 @@
 #!/bin/bash
-# AutoFishR 打包脚本
+# AddFish 打包脚本
 # 自动编译并打包所有必要文件
 
 # 默认参数
@@ -7,12 +7,12 @@ CONFIGURATION=${1:-Release}
 OUTPUT_DIR=${2:-./publish}
 
 echo "====================================="
-echo "  AutoFishR 自动打包脚本"
+echo "  AddFish 自动打包脚本"
 echo "====================================="
 echo ""
 
 # 获取项目版本号
-VERSION=$(grep '<Version>' AutoFishR.csproj | sed 's/.*<Version>\(.*\)<\/Version>.*/\1/' | tr -d '[:space:]')
+VERSION=$(grep '<Version>' AddFish.csproj | sed 's/.*<Version>\(.*\)<\/Version>.*/\1/' | tr -d '[:space:]')
 if [ -z "$VERSION" ]; then
     VERSION="1.0.0"
     echo "警告: 无法获取版本号，使用默认版本: $VERSION"
@@ -39,15 +39,15 @@ echo ""
 
 # 创建临时打包目录
 TEMP_DIR="$OUTPUT_DIR/temp"
-PACKAGE_DIR="$TEMP_DIR/AutoFishR"
+PACKAGE_DIR="$TEMP_DIR/AddFish"
 PLUGIN_DIR="$PACKAGE_DIR/dll"
 mkdir -p "$PLUGIN_DIR"
 
 # 复制插件本体
 echo "复制插件文件..."
 BUILD_PATH="bin/$CONFIGURATION/net9.0"
-cp "$BUILD_PATH/AutoFishR.dll" "$PLUGIN_DIR/"
-echo "  AutoFishR.dll"
+cp "$BUILD_PATH/AddFish.dll" "$PLUGIN_DIR/"
+echo "  AddFish.dll"
 
 # 复制 YamlDotNet 依赖
 YAML_PATH="$BUILD_PATH/YamlDotNet.dll"
@@ -90,18 +90,18 @@ done
 # 创建 ZIP 包
 echo ""
 echo "创建 ZIP 包..."
-ZIP_NAME="AutoFishR_v${VERSION}【自动钓鱼重制版】.zip"
+ZIP_NAME="AddFish_v${VERSION}【额外渔获】.zip"
 ZIP_PATH="$OUTPUT_DIR/$ZIP_NAME"
 
 # 检测可用的压缩工具
 if command -v zip &> /dev/null; then
     # 使用 zip 命令
     cd "$TEMP_DIR"
-    zip -r "../$ZIP_NAME" AutoFishR/ -q
+    zip -r "../$ZIP_NAME" AddFish/ -q
     cd - > /dev/null
 elif command -v powershell.exe &> /dev/null; then
     # 在Windows上使用PowerShell的Compress-Archive
-    TEMP_DIR_WIN=$(cygpath -w "$TEMP_DIR/AutoFishR" 2>/dev/null || wslpath -w "$TEMP_DIR/AutoFishR" 2>/dev/null || echo "$TEMP_DIR/AutoFishR")
+    TEMP_DIR_WIN=$(cygpath -w "$TEMP_DIR/AddFish" 2>/dev/null || wslpath -w "$TEMP_DIR/AddFish" 2>/dev/null || echo "$TEMP_DIR/AddFish")
     ZIP_PATH_WIN=$(cygpath -w "$ZIP_PATH" 2>/dev/null || wslpath -w "$ZIP_PATH" 2>/dev/null || echo "$ZIP_PATH")
     powershell.exe -Command "Compress-Archive -Path '$TEMP_DIR_WIN' -DestinationPath '$ZIP_PATH_WIN' -Force"
 else

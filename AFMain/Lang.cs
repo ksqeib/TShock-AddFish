@@ -4,16 +4,16 @@ using TShockAPI;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace AutoFish.AFMain;
+namespace AddFish.AFMain;
 
 /// <summary>
-///     简易语言管理器：从 tshock/AutoFish/lang 下加载 YAML 词典，支持嵌入模板回落与缺省键回退。
+///     简易语言管理器：从 tshock/AddFish/lang 下加载 YAML 词典，支持嵌入模板回落与缺省键回退。
 /// </summary>
 internal static class Lang
 {
     private const string DefaultCulture = "zh-cn";
 
-    private static readonly string LangDirectory = Path.Combine(TShock.SavePath, "AutoFish", "lang");
+    private static readonly string LangDirectory = Path.Combine(TShock.SavePath, "AddFish", "lang");
 
     private static readonly IDeserializer Deserializer = new DeserializerBuilder()
         .WithNamingConvention(CamelCaseNamingConvention.Instance)
@@ -64,7 +64,7 @@ internal static class Lang
             TryExportEmbeddedLang(DefaultCulture, path))
             return;
 
-        File.WriteAllText(path, $"common.enabled: 启用\ncommon.disabled: 禁用\n# missing language for {culture}\n");
+        File.WriteAllText(path, $"addfish.common.enabled: 启用\naddfish.common.disabled: 禁用\n# missing language for {culture}\n");
     }
 
     private static bool TryExportEmbeddedLang(string culture, string path)

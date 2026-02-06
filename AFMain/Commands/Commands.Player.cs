@@ -1,7 +1,7 @@
 using System.Text;
 using TShockAPI;
 
-namespace AutoFish.AFMain;
+namespace AddFish.AFMain;
 
 /// <summary>
 ///     玩家侧指令处理�?
@@ -10,8 +10,8 @@ public partial class Commands
 {
     private static void AppendPlayerHelp(TSPlayer player, StringBuilder helpMessage)
     {
-        if (AutoFish.Config.CustomFishRules != null && AutoFish.Config.CustomFishRules.Count > 0)
-            helpMessage.Append('\n').Append(Lang.T("help.player.rules"));
+        if (AddFish.Config.CustomFishRules != null && AddFish.Config.CustomFishRules.Count > 0)
+            helpMessage.Append('\n').Append(Lang.T("addfish.help.player.rules"));
     }
 
     private static bool HandlePlayerCommand(CommandArgs args)
@@ -37,11 +37,11 @@ public partial class Commands
     /// </summary>
     private static bool HandleRulesCommand(CommandArgs args)
     {
-        var customRules = AutoFish.Config.CustomFishRules;
+        var customRules = AddFish.Config.CustomFishRules;
         
         if (customRules == null || customRules.Count == 0)
         {
-            args.Player.SendInfoMessage(Lang.T("rules.noCustomRules"));
+            args.Player.SendInfoMessage(Lang.T("addfish.rules.noCustomRules"));
             return true;
         }
 
@@ -51,7 +51,7 @@ public partial class Commands
         {
             if (!int.TryParse(args.Parameters[1], out pageNumber) || pageNumber < 1)
             {
-                args.Player.SendErrorMessage(Lang.T("error.invalidPage"));
+                args.Player.SendErrorMessage(Lang.T("addfish.error.invalidPage"));
                 return true;
             }
         }
@@ -68,7 +68,7 @@ public partial class Commands
         int endIndex = Math.Min(startIndex + pageSize, customRules.Count);
 
         // 显示标题
-        args.Player.SendInfoMessage(Lang.T("rules.title", pageNumber, totalPages, customRules.Count));
+        args.Player.SendInfoMessage(Lang.T("addfish.rules.title", pageNumber, totalPages, customRules.Count));
 
         // 显示当前页的规则
         for (int i = startIndex; i < endIndex; i++)
@@ -99,7 +99,7 @@ public partial class Commands
             // 概率信息
             var probability = (double)rule.ChanceNumerator / rule.ChanceDenominator * 100;
             sb.Clear();
-            sb.Append($"  [c/B5E7A0:{Lang.T("rules.probability")}] ");
+            sb.Append($"  [c/B5E7A0:{Lang.T("addfish.rules.probability")}] ");
             sb.Append($"{rule.ChanceNumerator}/{rule.ChanceDenominator}");
             sb.Append($" ([c/FFD700:{probability:F2}%])");
             args.Player.SendInfoMessage(sb.ToString());
@@ -108,7 +108,7 @@ public partial class Commands
             if (!string.IsNullOrEmpty(rule.Rarity))
             {
                 sb.Clear();
-                sb.Append($"  [c/D4A5F9:{Lang.T("rules.rarity")}] ");
+                sb.Append($"  [c/D4A5F9:{Lang.T("addfish.rules.rarity")}] ");
                 
                 if (Enums.FishRarityMapper.TryParse(rule.Rarity, out var rarityType))
                 {
@@ -125,7 +125,7 @@ public partial class Commands
             if (rule.Conditions != null && rule.Conditions.Count > 0)
             {
                 sb.Clear();
-                sb.Append($"  [c/A8E6CF:{Lang.T("rules.conditions")}] ");
+                sb.Append($"  [c/A8E6CF:{Lang.T("addfish.rules.conditions")}] ");
                 
                 var conditionNames = new List<string>();
                 foreach (var condStr in rule.Conditions)
@@ -153,7 +153,7 @@ public partial class Commands
         // 翻页提示
         if (totalPages > 1)
         {
-            args.Player.SendInfoMessage(Lang.T("rules.pageHint", pageNumber, totalPages));
+            args.Player.SendInfoMessage(Lang.T("addfish.rules.pageHint", pageNumber, totalPages));
         }
 
         return true;

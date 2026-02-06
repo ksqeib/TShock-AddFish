@@ -3,7 +3,7 @@ using System.Text;
 using Terraria;
 using TShockAPI;
 
-namespace AutoFish.Utils;
+namespace AddFish.Utils;
 
 public class Tools
 {

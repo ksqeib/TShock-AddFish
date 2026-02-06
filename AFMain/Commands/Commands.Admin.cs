@@ -1,8 +1,8 @@
 using System.Text;
-using AutoFish.AFMain.Enums;
+using AddFish.AFMain.Enums;
 using TShockAPI;
 
-namespace AutoFish.AFMain;
+namespace AddFish.AFMain;
 
 /// <summary>
 ///     管理员侧指令处理�?
@@ -11,14 +11,14 @@ public partial class Commands
 {
     private static void AppendAdminHelp(TSPlayer player, StringBuilder helpMessage)
     {
-        helpMessage.Append('\n').Append(Lang.T("help.admin.export"));
-        helpMessage.Append('\n').Append(Lang.T("help.admin.exportstats"));
+        helpMessage.Append('\n').Append(Lang.T("addfish.help.admin.export"));
+        helpMessage.Append('\n').Append(Lang.T("addfish.help.admin.exportstats"));
     }
 
     private static bool HandleAdminCommand(CommandArgs args)
     {
         var caller = args.Player ?? TSPlayer.Server;
-        if (!caller.HasPermission(AutoFish.AdminPermission)) return false;
+        if (!caller.HasPermission(AddFish.AdminPermission)) return false;
 
         var sub = args.Parameters[0].ToLower();
 
@@ -32,17 +32,17 @@ public partial class Commands
                     ExportToFileCommand(caller);
                     return true;
                 case "debug":
-                    AutoFish.DebugMode = !AutoFish.DebugMode;
-                    var debugStatus = AutoFish.DebugMode ? "[c/00FF00:已开启]" : "[c/FF0000:已关闭]";
+                    AddFish.DebugMode = !AddFish.DebugMode;
+                    var debugStatus = AddFish.DebugMode ? "[c/00FF00:已开启]" : "[c/FF0000:已关闭]";
                     caller.SendSuccessMessage($"DEBUG 模式 {debugStatus}");
-                    if (AutoFish.DebugMode)
+                    if (AddFish.DebugMode)
                     {
                         caller.SendInfoMessage("[c/FFFF00:警告：DEBUG 模式会输出大量调试信息到控制台]");
-                        TShock.Log.ConsoleInfo($"[AutoFishR] DEBUG 模式已开启 (操作者: {caller.Name})");
+                        TShock.Log.ConsoleInfo($"[AddFish] DEBUG 模式已开启 (操作者: {caller.Name})");
                     }
                     else
                     {
-                        TShock.Log.ConsoleInfo($"[AutoFishR] DEBUG 模式已关闭 (操作者: {caller.Name})");
+                        TShock.Log.ConsoleInfo($"[AddFish] DEBUG 模式已关闭 (操作者: {caller.Name})");
                     }
                     return true;
                 default:
@@ -66,7 +66,7 @@ public partial class Commands
             caller.SendInfoMessage($"完全匹配: {stats.FullyMappedRules} ({GetPercentage(stats.FullyMappedRules, stats.TotalRules)}%)");
             caller.SendInfoMessage($"部分匹配: {stats.PartiallyMappedRules} ({GetPercentage(stats.PartiallyMappedRules, stats.TotalRules)}%)");
             caller.SendInfoMessage($"无法映射: {stats.UnmappedRules} ({GetPercentage(stats.UnmappedRules, stats.TotalRules)}%)");
-            caller.SendInfoMessage($"使用 /afa export 导出到文件");
+            caller.SendInfoMessage($"使用 /adfa export 导出到文件");
         }
         catch (Exception ex)
         {

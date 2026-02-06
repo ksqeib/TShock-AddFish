@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.GameContent.FishDropRules;
 
-namespace AutoFish.AFMain.Enums;
+namespace AddFish.AFMain.Enums;
 
 /// <summary>
 ///     鱼类稀有度枚举与游戏内 FishRarityCondition 对象之间的映射器。
@@ -129,7 +129,7 @@ public static class FishRarityMapper
     /// </summary>
     public static string GetLocalizedName(FishRarityType rarityType)
     {
-        var key = $"rarity.{rarityType}";
+        var key = $"addfish.rarity.{rarityType}";
         return Lang.T(key);
     }
 }

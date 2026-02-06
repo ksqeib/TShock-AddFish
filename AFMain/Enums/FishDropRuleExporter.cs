@@ -6,7 +6,7 @@ using TShockAPI;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace AutoFish.AFMain.Enums;
+namespace AddFish.AFMain.Enums;
 
 /// <summary>
 ///     钓鱼掉落规则数据传输对象，用于导出规则。
@@ -137,7 +137,7 @@ public static class FishDropRuleExporter
         var sb = new StringBuilder();
         sb.AppendLine("# 钓鱼规则导出文件");
         sb.AppendLine("# 此文件由系统自动生成");
-        sb.AppendLine("# 由ksqeib的AutoFishR生成，其中无法匹配规则为任务鱼/特殊世界规则");
+        sb.AppendLine("# 由ksqeib的AddFish生成，其中无法匹配规则为任务鱼/特殊世界规则");
         sb.AppendLine();
         sb.AppendLine("rules:");
         
@@ -222,7 +222,7 @@ public static class FishDropRuleExporter
                 Conditions = new[] { anyEnemiesCondition }
             };
             targetList._rules.Add(anyEnemiesStopper);
-            TShock.Log.ConsoleInfo("[AutoFish] 已添加 AnyEnemies 默认头部 Stopper");
+            TShock.Log.ConsoleInfo("[AddFish] 已添加 AnyEnemies 默认头部 Stopper");
         }
 
         // 使用特殊的键类型来分组（-1表示没有特殊条件）
@@ -329,7 +329,7 @@ public static class FishDropRuleExporter
                     };
                     targetList._rules.Add(stopper);
                     
-                    TShock.Log.ConsoleInfo($"[AutoFish] 为条件 {stopperConditionType} 添加了 Stopper");
+                    TShock.Log.ConsoleInfo($"[AddFish] 为条件 {stopperConditionType} 添加了 Stopper");
                 }
             }
         }

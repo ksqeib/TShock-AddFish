@@ -1,6 +1,6 @@
 using TShockAPI;
 
-namespace AutoFish.AFMain;
+namespace AddFish.AFMain;
 
 /// <summary>
 ///     自动钓鱼插件的聊天命令处理入口与通用逻辑。
@@ -8,18 +8,18 @@ namespace AutoFish.AFMain;
 public partial class Commands
 {
     /// <summary>
-    ///     处理 /af 相关指令的入口。
+    ///     处理 /adf 相关指令的入口。
     /// </summary>
     public static void Afs(CommandArgs args)
     {
         var player = args.Player;
         var isConsole = !player.RealPlayer;
 
-        if (!AutoFish.Config.PluginEnabled) return;
+        if (!AddFish.Config.PluginEnabled) return;
 
         if (isConsole)
         {
-            player.SendInfoMessage(Lang.T("help.consoleUseAfa"));
+            player.SendInfoMessage(Lang.T("addfish.help.consoleUseAfa"));
             // 不再直接return，允许继续执行
         }
         if (args.Parameters.Count == 0)
@@ -35,16 +35,16 @@ public partial class Commands
     }
 
     /// <summary>
-    ///     处理 /afa（管理员）指令入口。
+    ///     处理 /adfa（管理员）指令入口。
     /// </summary>
     public static void Afa(CommandArgs args)
     {
-        if (!AutoFish.Config.PluginEnabled) return;
+        if (!AddFish.Config.PluginEnabled) return;
 
         var caller = args.Player ?? TSPlayer.Server;
-        if (!caller.HasPermission(AutoFish.AdminPermission))
+        if (!caller.HasPermission(AddFish.AdminPermission))
         {
-            caller.SendErrorMessage(Lang.T("error.noPermission.admin"));
+            caller.SendErrorMessage(Lang.T("addfish.error.noPermission.admin"));
             return;
         }
 

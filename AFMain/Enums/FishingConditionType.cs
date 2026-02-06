@@ -1,4 +1,4 @@
-namespace AutoFish.AFMain.Enums;
+namespace AddFish.AFMain.Enums;
 
 /// <summary>
 ///     钓鱼条件枚举，对应游戏中的 AFishingCondition。

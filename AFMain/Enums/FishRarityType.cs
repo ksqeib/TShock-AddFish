@@ -1,4 +1,4 @@
-namespace AutoFish.AFMain.Enums;
+namespace AddFish.AFMain.Enums;
 
 /// <summary>
 ///     鱼类稀有度枚举，对应游戏中的 FishRarityCondition。

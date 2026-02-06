@@ -4,12 +4,12 @@ using TerrariaApi.Server;
 using TShockAPI;
 using TShockAPI.Hooks;
 
-namespace AutoFish.AFMain;
+namespace AddFish.AFMain;
 
 [ApiVersion(2, 1)]
-public partial class AutoFish : TerrariaPlugin
+public partial class AddFish : TerrariaPlugin
 {
-    public const string PermissionPrefix = "autofish.";
+    public const string PermissionPrefix = "addfish.";
     public const string AdminPermission = $"{PermissionPrefix}admin";
     public const string CommonPermission = $"{PermissionPrefix}common";
     public const string DenyPermissionPrefix = $"{PermissionPrefix}no.";
@@ -23,18 +23,18 @@ public partial class AutoFish : TerrariaPlugin
     /// <summary>
     ///     创建插件实例。
     /// </summary>
-    public AutoFish(Main game) : base(game)
+    public AddFish(Main game) : base(game)
     {
     }
 
     /// <summary>插件名称。</summary>
-    public override string Name => "额外渔获";
+    public override string Name => "AddFish";
 
     /// <summary>插件作者。</summary>
     public override string Author => "ksqeib";
 
     /// <summary>插件版本。</summary>
-    public override Version Version => new(1, 4, 8, 1);
+    public override Version Version => new(1, 0,0);
 
     /// <summary>插件描述。</summary>
     public override string Description => "青山常伴绿水，燕雀已是南飞";
@@ -76,17 +76,17 @@ public partial class AutoFish : TerrariaPlugin
     {
         if (!Configuration.IsFirstInstall) return;
         TShock.Log.ConsoleInfo("========================================");
-        TShock.Log.ConsoleInfo($"[AutoFishR] 插件已成功加载 v{Version}");
-        TShock.Log.ConsoleInfo("[AutoFishR] 当前状态：正常运行");
+        TShock.Log.ConsoleInfo($"[AddFish] 插件已成功加载 v{Version}");
+        TShock.Log.ConsoleInfo("[AddFish] 当前状态：正常运行");
         TShock.Log.ConsoleInfo("========================================");
-        TShock.Log.ConsoleInfo("[AutoFishR] 遇到 BUG 或问题？");
-        TShock.Log.ConsoleInfo("[AutoFishR] 1. 请先查看 README 文档");
-        TShock.Log.ConsoleInfo("[AutoFishR] 2. 无法解决再联系开发者");
-        TShock.Log.ConsoleInfo("[AutoFishR] GitHub: https://github.com/ksqeib/AutoFishR");
-        TShock.Log.ConsoleInfo("[AutoFishR] Star 很重要，是支持开发者持续开发的动力，欢迎点个 Star！");
-        TShock.Log.ConsoleInfo("[AutoFishR] 本插件为免费开源插件，如有任何付费购买行为，说明您被骗了。");
-        TShock.Log.ConsoleInfo("[AutoFishR] 联系方式：QQ 2388990095 (ksqeib)");
-        TShock.Log.ConsoleInfo("[AutoFishR] 警告：请勿在群内艾特开发者！");
+        TShock.Log.ConsoleInfo("[AddFish] 遇到 BUG 或问题？");
+        TShock.Log.ConsoleInfo("[AddFish] 1. 请先查看 README 文档");
+        TShock.Log.ConsoleInfo("[AddFish] 2. 无法解决再联系开发者");
+        TShock.Log.ConsoleInfo("[AddFish] GitHub: https://github.com/ksqeib/TShock-AddFish");
+        TShock.Log.ConsoleInfo("[AddFish] Star 很重要，是支持开发者持续开发的动力，欢迎点个 Star！");
+        TShock.Log.ConsoleInfo("[AddFish] 本插件为免费开源插件，如有任何付费购买行为，说明您被骗了。");
+        TShock.Log.ConsoleInfo("[AddFish] 联系方式：QQ 2388990095 (ksqeib)");
+        TShock.Log.ConsoleInfo("[AddFish] 警告：请勿在群内艾特开发者！");
         TShock.Log.ConsoleInfo("========================================");
     }
 
@@ -113,7 +113,7 @@ public partial class AutoFish : TerrariaPlugin
     private static void ReloadConfig(ReloadEventArgs args)
     {
         LoadConfig();
-        args.Player.SendInfoMessage(Lang.T("reload.done"));
+        args.Player.SendInfoMessage(Lang.T("addfish.reload.done"));
     }
 
     /// <summary>
@@ -147,12 +147,12 @@ public partial class AutoFish : TerrariaPlugin
 
             if (loadedCount > 0)
             {
-                TShock.Log.ConsoleInfo($"[AutoFish] 已加载 {loadedCount} 条自定义钓鱼规则");
+                TShock.Log.ConsoleInfo($"[AddFish] 已加载 {loadedCount} 条自定义钓鱼规则");
             }
         }
         catch (Exception ex)
         {
-            TShock.Log.Error($"[AutoFish] 加载自定义钓鱼规则失败: {ex.Message}");
+            TShock.Log.Error($"[AddFish] 加载自定义钓鱼规则失败: {ex.Message}");
         }
     }
 }

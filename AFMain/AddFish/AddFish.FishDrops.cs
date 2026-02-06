@@ -1,10 +1,10 @@
-using AutoFish.AFMain.Enums;
+using AddFish.AFMain.Enums;
 using Terraria.GameContent.FishDropRules;
 using FishingContext = Terraria.GameContent.FishDropRules.FishingContext;
 
-namespace AutoFish.AFMain;
+namespace AddFish.AFMain;
 
-public partial class AutoFish
+public partial class AddFish
 {
     public static readonly FishDropRuleList CustomRuleList = new();
 

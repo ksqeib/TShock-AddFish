@@ -4,7 +4,7 @@ using TShockAPI;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace AutoFish.AFMain;
+namespace AddFish.AFMain;
 
 /// <summary>
 ///     插件配置模型，负责序列化与默认值初始化。
@@ -12,7 +12,7 @@ namespace AutoFish.AFMain;
 internal class Configuration
 {
     /// <summary>配置目录。</summary>
-    public static readonly string ConfigDirectory = Path.Combine(TShock.SavePath, "AutoFish");
+    public static readonly string ConfigDirectory = Path.Combine(TShock.SavePath, "AddFish");
 
     /// <summary>配置文件路径。</summary>
     public static readonly string FilePath = Path.Combine(ConfigDirectory, "config.yml");
@@ -79,7 +79,7 @@ internal class Configuration
 
         if (File.Exists(FilePath))
         {
-            Console.WriteLine("[AutoFish]配置文件成功找到并加载");
+            Console.WriteLine("[AddFish]配置文件成功找到并加载");
             return;
         }
 
@@ -88,25 +88,25 @@ internal class Configuration
         var preferredCulture = ResolvePreferredConfigCulture();
         if (TryExportEmbeddedConfig(preferredCulture))
         {
-            Console.WriteLine($"[AutoFish]导出 {preferredCulture} 默认配置成功");
+            Console.WriteLine($"[AddFish]导出 {preferredCulture} 默认配置成功");
             return;
         }
 
         if (!preferredCulture.Equals("en-us", StringComparison.OrdinalIgnoreCase) &&
             TryExportEmbeddedConfig("en-us"))
         {
-            Console.WriteLine("[AutoFish]导出 en-us 默认配置成功");
+            Console.WriteLine("[AddFish]导出 en-us 默认配置成功");
             return;
         }
 
         if (!preferredCulture.Equals("zh-cn", StringComparison.OrdinalIgnoreCase) &&
             TryExportEmbeddedConfig("zh-cn"))
         {
-            Console.WriteLine("[AutoFish]导出 zh-cn 默认配置成功");
+            Console.WriteLine("[AddFish]导出 zh-cn 默认配置成功");
             return;
         }
 
-        Console.WriteLine($"[AutoFish]无法导出默认配置！！！！ {preferredCulture} ");
+        Console.WriteLine($"[AddFish]无法导出默认配置！！！！ {preferredCulture} ");
         var defaultConfig = new Configuration();
         defaultConfig.Write();
     }
